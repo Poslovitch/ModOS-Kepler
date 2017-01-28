@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -25,6 +26,7 @@ public class User{
 	private Location disconnectLocation;
 	private boolean isOnline, isFrozen, isSpec;
 	private Location lastSpecLoc;
+	private GameMode beforeSpecGameMode;
 	private TagInfo activeTag;
 	private List<TagInfo> tags;
 	private Ban activeBan;
@@ -50,6 +52,7 @@ public class User{
 		this.isFrozen = false;
 		this.isSpec = false;
 		this.lastSpecLoc = loc;
+		this.beforeSpecGameMode = GameMode.SURVIVAL;
 		this.activeTag = null;
 		this.tags = new ArrayList<TagInfo>();
 		this.activeBan = null;
@@ -78,6 +81,7 @@ public class User{
 	public boolean isTagged(){return this.activeTag != null;}
 	public boolean isSpec(){return this.isSpec;}
 	public Location getSpecLocation(){return this.lastSpecLoc;}
+	public GameMode getSpecGamemode(){return this.beforeSpecGameMode;}
 	public TagInfo getActiveTag(){return this.activeTag;}
 	public List<TagInfo> getTags(){return this.tags;}
 	public Ban getActiveBan(){return this.activeBan;}
@@ -103,9 +107,10 @@ public class User{
 	public void setDisconnectLocation(Location l){this.disconnectLocation = l;}
 	public void setOnline(boolean b){this.isOnline = b;}
 	public void setFrozen(boolean b){this.isFrozen = b;}
-	public void setSpec(boolean b, Location loc){
+	public void setSpec(boolean b, Location loc, GameMode gamemode){
 		this.isSpec = b;
 		this.lastSpecLoc = loc;
+		this.beforeSpecGameMode = gamemode;
 	}
 	public void setActiveTag(TagInfo tag){this.activeTag = tag;}
 	public void setTags(List<TagInfo> list){this.tags = list;}

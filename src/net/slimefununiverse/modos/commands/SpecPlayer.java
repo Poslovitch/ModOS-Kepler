@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import net.slimefununiverse.modos.ModOS;
+import net.slimefununiverse.modos.api.objects.User;
 import net.slimefununiverse.modos.api.utils.TextHelper;
 import net.slimefununiverse.modos.database.UserCache;
 
@@ -28,14 +29,15 @@ public class SpecPlayer implements CommandExecutor {
 		if (sender instanceof Player) {
 			Player p = (Player) sender;
 			if (p.hasPermission("modos.commands.spectate")) {
-				if(UserCache.instance().get(p.getUniqueId()).isSpec()){
-					p.teleport(UserCache.instance().get(p.getUniqueId()).getSpecLocation());
-					p.setGameMode(GameMode.SURVIVAL);
-					UserCache.instance().get(p.getUniqueId()).setSpec(false, p.getLocation());
+				User user = UserCache.instance().get(p.getUniqueId());
+				if(user.isSpec()){
+					p.teleport(user.getSpecLocation());
+					p.setGameMode(user.getSpecGamemode());
+					user.setSpec(false, p.getLocation(), user.getSpecGamemode());
 					p.sendMessage(TextHelper.modos(ChatColor.GREEN + "Tu n'es plus en spectateur !"));
 				} else {
+					user.setSpec(true, p.getLocation(), p.getGameMode());
 					p.setGameMode(GameMode.SPECTATOR);
-					UserCache.instance().get(p.getUniqueId()).setSpec(true, p.getLocation());
 					p.sendMessage(TextHelper.modos(ChatColor.GREEN + "Tu es maintenant en spectateur !"));
 				}
 			}

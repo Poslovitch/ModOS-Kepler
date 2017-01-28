@@ -1,0 +1,50 @@
+main: net.slimefununiverse.modos.ModOS
+
+name: ModOS
+version: 1.0 Kepler
+authors: [Poslovitch, Cleymax, MrSheepSheep, SystemGlitch]
+
+depend: [DiscordUniverse, UniverseAuthenticator]
+
+commands:
+  seen:
+      description: Show for when the player is online or offline
+      usage: /seen <playerName>
+  lookup:
+      description: Display all informations about a player
+      usage: /lookup <playerName>
+  report:
+      description: Report a malicious player
+      usage: /report <player> <reason>
+  wtp:
+      description: Teleport you across worlds
+      usage: /wtp <world> <x> <y> <z>
+  broadcast:
+      description: Broadcast a message
+      usage: /broadcast <message>
+      aliases: [bc]
+  spectate:
+      description: Spectate
+      usage: /spectate
+      aliases: [spec]
+      
+permissions:    
+  modos.staff:
+    description: Staff
+    default: op
+  modos.superadmin:
+    description: debug
+    default: op
+  
+  modos.commands.seen:
+    description: /seen
+    default: op
+  modos.commands.wtp:
+    description: /wtp
+    default: op
+  modos.commands.report:
+    description: /report
+    default: op
+  modos.commands.broadcast:
+    description: /broadcast
+    default: op

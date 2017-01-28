@@ -1,0 +1,16 @@
+# ModOS Kepler - Configuration File
+
+discord:
+  default-channel: "modos-kepler"
+
+tagplayer:
+  # Expiration time in days
+  expiration:
+    automatic: 7
+    manual: 90
+  default-manual-priority: 2
+
+report:
+  # Cooldown in minute between 2 reports
+  cooldown: 5
+  tag-priority: 1
